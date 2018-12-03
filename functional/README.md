@@ -2,11 +2,14 @@
 
 ## Topics
 - Parallelism
-- Concurrency and transactional memory
-- Monads
-- Monad Transformers
+    - pseq et al
+    - Concurrency
+    - transactional memory
+- Monad
+    - Base
+    - Transformers
 - Domain specific languages
-- FRP and arrows
+    - FRP and arrows (i think this is dsl relevant since topic was guis)
 - Types
     - inference
     - advanced types 
