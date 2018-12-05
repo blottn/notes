@@ -122,7 +122,7 @@ class Functor f where
     fmap :: (a -> b) -> (f a -> f b)
 ```
 
-Generally `fmap = <$>`
+Generally it's aliased to: `fmap = <$>`
 
 ### Applicatives
 
@@ -168,6 +168,8 @@ class Applicative m => Monad m where
 Also `liftM` has the same type signature as fmap so in _general_ fmap will equal
 liftM in your monad instance.
 
+> LiftM lifts a function into a monad
+
 Here's the function `liftM`
 
 ```Haskell
@@ -175,5 +177,121 @@ liftM :: (Monad f) => (a -> b) -> f a -> f b
 liftM f m1 = do { x1 <- m1; return (f x1) }
 ```
 
+#### State monad impl
+```Haskell
+
+instance Functor (State s) where
+    fmap = liftM
+
+instance Applicative (State s) where
+    pure a = State (\s -> (a,s))
+
+instance Monad (State s) where
+    m >>= k = State (\s -> let (a,s') = runState m s
+                           in runState (k a) s')
+    return = pure
+```
+
 ## Transformers
+
+### Concurrency monad
+
+This would be implemented like so:
+
+```Haskell
+data Thread = Action (IO ()) Thread
+    | Fork Thread Thread
+    | End
+
+    -- record thingy here
+    -- creates continueWith :: CM a -> (a -> Thread) -> Thread
+newtype CM a = CM {
+    continueWith :: (a -> Thread) -> Thread
+}
+
+instance Functor CM where
+    fmap = liftM
+
+instance Applicative CM where
+    pure a = CM $ \k -> k a
+
+instance Monad CM where
+    m >>= f = CM $ \k -> m `continueWith` \x -> f x `continueWith` k
+```
+
+```Haskell
+print :: Char -> CM ()
+print c = CM $ \k -> Action (putChar c) (k ())
+
+fork :: CM a -> CM ()
+fork m = CM $ \k -> Fork (thread m) (k ())
+
+end :: CM a
+end = CM $ \_ -> End
+```
+
+> We can't add more functions easily because monads don't compose
+
+Here's how we could add error functionality
+
+```Haskell
+class Monad m => Err m where
+    eFail :: m a
+    eHandle :: m a -> m a -> m a
+```
+
+Great, but we need a way to access the inner functions:
+
+```Haskell
+class (Monad m, Monad (t m)) => MonadTransformer t m where
+    lift :: m a -> t m a
+```
+
+Example impl where we attach error functionality to Maybe:
+
+```Haskell
+newtype ErrTM m a = ErrTM (m (Maybe a))
+
+instance Monad m => Functor (ErrTM m) where
+    fmap = liftM
+
+instance Monad m => Applicative (ErrTM m) where
+    pure a = ErrTM (return (Just a))
+
+instance Monad m => Monad (ErrTM m) where
+    (ErrTM m) >>= f = ErrTM $ m >>= r
+                        where unwrapErrTM (ErrTM v) = v
+                            r (Just x) = unwrapErrTM $ f x
+                            r Nothing = return Nothing
+```
+
+How to lift an action into the inner monad:
+
+```Haskell
+instance Monad m => MonadTransformer ErrTM m where
+lift m = ErrTM $ do
+                a <- m
+                return (Just a)
+```
+
+Now we define the error functions:
+
+```Haskell
+instance Monad m => Err (ErrTM m) where
+    eFail = ErrTM (return Nothing)
+
+    eHandle (ErrTM m1)(ErrTM m2) = ErrTM $ do
+        ma <- m1
+        case ma of
+            Nothing -> m2
+            Just _ -> return ma
+
+    runErrTM :: Monad m => ErrTM m a -> m a
+    runErrTM (ErrTM etm) = do
+        ma <- etm
+        case ma of
+            Just a -> return a
+```
+
+## FRPs and Arrow
 

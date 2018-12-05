@@ -8,8 +8,9 @@
 - Monad
     - Base
     - Transformers
-- Domain specific languages
     - FRP and arrows (i think this is dsl relevant since topic was guis)
+- Domain specific languages
+    - Deep and shallow
 - Types
     - inference
     - advanced types 
