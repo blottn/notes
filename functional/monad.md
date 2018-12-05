@@ -295,3 +295,56 @@ instance Monad m => Err (ErrTM m) where
 
 ## FRPs and Arrow
 
+Arrows 
+
+> Monads allow us to combine actions in a linear way
+> Arrows allow some more interesting combinations
+
+
+```Haskell
+class Arrow a where
+    arr :: (b -> c) -> a b c
+    (>>>) :: a b c -> a c d -> a b d
+```
+`Kleisli` takes a monad and wraps it in an arrow
+
+Example Arrow:
+
+```Haskell
+-- record: runSF :: SF a b -> [a] -> [b] I think....
+newtype SF a b = SF { runSF :: [a] -> [b] }
+
+instance Arrow SF where
+    -- arr :: (b -> c) -> a b c
+    arr f = SF (map f)
+
+    -- (>>>) :: a b c -> a c d -> a b d
+    SF f >>> SF g = SF (f >>> g)
+```
+
+
+Splash in some category theory, Arrows come from category theory.
+
+```Haskell
+class Category cat where
+    id :: cat a a
+    (.) :: cat b c -> cat a b -> cat a c
+    (>>>) :: Category cat => cat a b -> cat b c -> cat a c
+    (<<<) :: Category cat => cat b c -> cat a b -> cat a c
+```
+
+```Haskell
+class Category a => Arrow a where
+    arr :: (b -> c) -> a b c
+    first :: a b c -> a (b, d) (c, d)
+    second :: a b c -> a (d, b) (d, c)
+```
+
+```Haskell
+    -- running two arrows on a pair of values (one arrow on the first, the
+other on the second)
+    (***) :: a b c -> a b' c' -> a (b, b') (c, c')
+
+    -- running two arrows on the same value
+    (&&&) :: a b c -> a b c' -> a b (c, c')
+```
