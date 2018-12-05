@@ -128,7 +128,8 @@ Generally `fmap = <$>`
 
 Functor allows us to apply a function into just one item.
 Applicative extends this to any number of arguments. 
-Ie fmap `(N arg function) -> <N args> -> out`
+
+eg: `fmap (N arg function) -> <N args> -> out`
 
 Definition:
 ```Haskell
@@ -144,10 +145,35 @@ Example usage:
 fmap2 g x y = pure g <*> x <*> y
 ```
 
-
+Also there are functions for aplicative such as `*>` that does the same as `<*>`
+but just ignores the left value (similarly `<*`)
 
 ### Monads
 
+From this we know that Monads are just
+
+```Haskell
+class Applicative m => Monad m where
+    (>>=) :: m a -> (a -> m b) -> m b
+    (>>) :: m a -> m b -> m b
+    m >> k = m >>= \_ -> k
+
+    return :: a -> m a
+    return = pure
+
+    fail :: String -> m a
+    fail s = errorWithoutStackTrace s
+```
+
+Also `liftM` has the same type signature as fmap so in _general_ fmap will equal
+liftM in your monad instance.
+
+Here's the function `liftM`
+
+```Haskell
+liftM :: (Monad f) => (a -> b) -> f a -> f b
+liftM f m1 = do { x1 <- m1; return (f x1) }
+```
 
 ## Transformers
 
