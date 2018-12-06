@@ -45,7 +45,7 @@ Side note about vectors:
 
 
 #### Clipping 
-![clippy](https://vignette.wikia.nocookie.net/joke-battles/images/c/cb/Clippy.png/revision/latest?cb=20151209031540)
+![clippy](https://vignette.wikia.nocookie.net/joke-battles/images/c/cb/Clippy.png/revision/latest?cb=20151209031540 =60x60)
 
 ### Rasterizer
 #### Fixed function
