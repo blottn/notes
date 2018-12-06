@@ -88,8 +88,11 @@ Build up the color buffer 2d array of colors, also depth testing with Z Buffer.
 Z buffer is just a 2d array of Z value of closest objects.
 
 #### Double buffer
-_aside_ Narrator:
+_aside_ *Narrator*:
 We just swap buffers to display so we dont see rasterisation as it's happening
 
 # Graphics Programming
 
+> Rendering is the process by which a computer creates images from models.
+
+These slides are basically a super basic how-to Opengl.
