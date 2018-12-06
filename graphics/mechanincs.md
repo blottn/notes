@@ -52,6 +52,7 @@ Side note about vectors:
 
 
 #### Clipping 
+<img alt="clippy" src="https://vignette.wikia.nocookie.net/joke-battles/images/c/cb/Clippy.png/revision/latest?cb=20151209031540" width="60" height="60"/>
 ![clippy](https://vignette.wikia.nocookie.net/joke-battles/images/c/cb/Clippy.png/revision/latest?cb=20151209031540 =60x60)
 
 
