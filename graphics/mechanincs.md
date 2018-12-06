@@ -19,7 +19,14 @@ Vertex stream -> `[Vertex shader]` -> `[Tri assembly]` -> `[Viewport clipping]`
 
 Piped into the rasterizer
 
+### Rasterizer
+#### Fixed function
+Screen space triangles -> `[Rasterizer]` -> `[Texture stages]` -> `[Frame buffer]` -> image
 
+#### Programmable
+Screen space triangles -> `[Rasterizer]` -> `[Fragment Shader]` -> `[Frame buffer]` -> image
+
+### Shaders
 #### Vertex shader
 Performs per vertex operations.
 Usually outputs:
@@ -47,12 +54,6 @@ Side note about vectors:
 #### Clipping 
 ![clippy](https://vignette.wikia.nocookie.net/joke-battles/images/c/cb/Clippy.png/revision/latest?cb=20151209031540 =60x60)
 
-### Rasterizer
-#### Fixed function
-Screen space triangles -> `[Rasterizer]` -> `[Texture stages]` -> `[Frame buffer]` -> image
-
-#### Programmable
-Screen space triangles -> `[Rasterizer]` -> `[Fragment Shader]` -> `[Frame buffer]` -> image
 
 
 
