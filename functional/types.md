@@ -1,6 +1,6 @@
 # Types
 
-## Inference Systems
+## Inference
 
 > Haskell is polymorphically typed, so types may be universally quantified over sets of type variables.
 
@@ -81,7 +81,7 @@ LET rule for let statements
             Γ meansp let x = e in e' : τ
 ```
 
-## Advanced types
+## Extensions
 
 ### Phantom
 
@@ -110,7 +110,7 @@ data HList = HNil
 
 Used for implementing private variables in class type objects.
 
-### Generalised Algebraic Data Types
+### GADT
 
 > This is really just a data type where we declare the types of the constructors directly
 > Sometimes called 
@@ -182,6 +182,6 @@ type family Add (x :: Nat) (y :: Nat) :: Nat
 
 
 
-### Dependent Types
+### Dependent
 
 Type depends on value.

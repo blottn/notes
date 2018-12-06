@@ -293,7 +293,7 @@ instance Monad m => Err (ErrTM m) where
             Just a -> return a
 ```
 
-## FRPs and Arrow
+## FRPs-Arrows
 
 Arrows 
 

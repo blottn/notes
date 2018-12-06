@@ -1,6 +1,6 @@
 # parallelism
 
-## pseq and other functions
+## primitives
 
 System library `Control.parallel` provides the function `par :: a -> b -> b`.
 This signals to the compiler that a can be done in parallel (forks off a)
@@ -56,7 +56,7 @@ we want read to block when empty...
 
 [Actual impl](./channels/impl.md)
 
-## Transactional memory
+## STM
 
 Locks are standard way of synchronising programs but are real easy to get wrong.
 
