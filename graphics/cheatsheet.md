@@ -195,7 +195,7 @@ really.
 - `Smooth/Gouraud` is once per vert and then interpolate for the rest.
     - Makes surface look curved but edges are still pointy (ouch!).
     - Smoothed with averaging normals.
-        - `Nv = ((N1 + N2) / 2) / |(N1+N2) / 2|
+        - `Nv = ((N1 + N2) / 2) / |(N1+N2) / 2|`
     - Big errors with low poly count
 - `Phong shading` interpolate normals and calculate for every fragment.
     - Interpolates normals between vertices.
