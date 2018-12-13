@@ -1,90 +1,99 @@
-# Cheatsheet for human factors
+# Cheatsheet
 
-## Description
-This is a super short once over of all of the course material. Not in any way
-comprehensive but good for a pre exam once over.
+## Design process
 
-## Human Computer Interaction
+- Identify needs
+- Develop many alternate solutions
+- Prototype
+- Evaluate ux.
 
-Concerned *design*, *evaluation* and *implementation* of interactive computer
-systems.
+## Data gathering
+- interviews.
+- questionnaires.
+- observation (direct/indirect).
 
-- Useful
-    - System achieves functionality
-- Usable
-    - Should be easy and natural to use
-- Used
-    - People want to use it (pretty)
+## Prototyping
+- screen sketches.
+- storyboard.
+- powerpoint.
+- lump of wood.
 
-### Involved disciplines
-- Graphic design
-- Ergonomics
-- Engineering
-- Psychology
-- Information systems
-- etcetc
+Finds
+- Technical issues
+- Workflow
+- Difficult areas
+- Layout design
 
-> To average user the interface is the system.
+## Interface evaluation
 
-### Usable
-- Effective
-- Efficient
-- Safe
-- Utility
-- Learnable
-- Memorisable
+### Nielsen heuristics
 
-#### Fitts List
+- status visibility.
+- Match between system and reality.
+- User control and freedom.
+- consistency.
+- error prevention
+- recognition not recall.
+- flexibility.
+- aesthetic.
+- diagnosis of errors.
+- help.
 
-##### Humans better
-- Inductive reasoning.
-- Pattern perception.
-- Improvisation and flexible procedures.
-- Excercise judgement.
+## Usability testing
 
-##### Machines better
-- Quick response
-- Repetitive tasks
-- Multitasking
-- Store information for only a brief time then erase it.
+Generally measure stuff like:
+- time to complete.
+- time to complete with retention (go away and come back).
+- Error count.
+- Error count per task.
+- Success rate.
 
-#### Sheridans level of automation
+## Human error
 
-levels 1 -> 10 
+*slip* - error but with correct plan.
+*lapse* - error because forgot action.
+*mistake* - Mistake in planning.
 
-1: Computer offers no assistance.
-3: Computer narrows selection down.
-5: Computer executes with approval.
-7: Computer does and informs humans.
-10: Computer acts without human.
+Types of slips:
+- *Capture* # Frequently used action overrides.
+- *Data-driven* # unnoticed use of external data interferes.
+- *Associative-activation*  # error due to internal thought interferes.
 
-automation increases system error.
+Fixes:
+- *slip* - improve ui.
+- *mistakes* - provide a better understanding of system.
+
+Keyhole property - show only what's important.
+
+Force function - require uer to confirm their action.
+
+### SRK framework
+
+- *Skill*
+    - Automatic, not conscious thought.
+- *Rule*
+    - Behaviour based on conscious thought and known rules.
+- *Knowledge*
+    - Improvisation without rules, requires thought and effort and analysis of system state.
+
+Automation handles Skill and Rule sections. Although humans are bad knowledge
+behaviours.
+
+### Latent Errors
+Errors due to design failures
+
+### Reduce opportunity for error
+- Provide good conceptual model
+- Desig nto match human limits
+    - Working memory
+    - problem solving activities
 
 
-## User Capabilities
+### Feedback
 
-- `Attention`
-    - layout is important to grab attention.
-    - no distractions.
-- `Perception`
-    - Legibility.
-    - Distinguishable icons.
-    - Bordering better than contrasting colors.
-    - law of Gestalt
-        - Proximity (Grouped on nearness of respective parts).
-        - Similarity (Groued on similarity).
-        - Continuation (Straight lines continue).
-        - Closure (Completed items together).
-        - Membership (Context matters for sub item).
-    - Audio is important
-- `Memory`
-    - Encoding then retrieving knowledge.
-    - More processing knowledge and relating increases retainability.
-    - Attention brings to short term, rehearsal -> long term.
-    - Information decays out of long term storage.
-    - 
-- `Learning`
-- `Communication verbally`
-- `Planning/ problem solving`
+Should provide user feedback on if their input has been received. Either before
+or after the action.
+
+## CSCW
 
 
